@@ -65,29 +65,26 @@
     </div>
   </div>
 
+  <h6><a href="api/tables">API Tables</a> | <a href="api/waitlist">API Wait List</a></h6>
+
   <script type="text/javascript">
     // Question: What does this code do?
-    $("#submit").on("click", function(event) {
-      event.preventDefault();
-      var newCharacter = {
-        name: $("#name").val().trim(),
-        email: $("#email").val().trim(),
-        phone: $("#phone").val().trim(),
-        specialID: $("#specialID").val().trim(),
-      };
-
-      // Question: What does this code do??
-      $.post("/api/characters", newCharacter)
-        .then(function(data) {
-          console.log("reservation.html", data);
-          alert("Adding name...");
-        });
+    $("#add-btn").on("click", function (event) {
+            event.preventDefault();
+            var newReserve = {
+                name: $("#name").val().trim(),
+                email: $("#email").val().trim(),
+                phone: $("#phone").val().trim(),
+                specialID: $("#specialID").val().trim()
+            }
+            //console.log(newReserve);
+            $.post("/api/reservation", newReserve).then(function (data) {
+                if (data === "tables") { alert("Reservation added!"); }
+                else {
+                    alert("You're on the waitlist!");
+                }
+            });
     });
   </script>
-
-    
-      
-      <h6><a href="api/tables">API Tables</a> | <a href="api/waitlist">API Wait List</a></h6>
-    <script text="text/javascript"></script>
 </body>
 </html>

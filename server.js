@@ -26,7 +26,7 @@ app.get("/api/tables", function(req, res) {
 app.get("/api/waitlist", function(req, res) {
     res.json(waitlist)
 });
-app.post("/api/reserve", function(req, res) {
+app.post("/api/reservation", function(req, res) {
     if (tables.length < 5) {
         tables.push(req.body);
         res.send("tables");
