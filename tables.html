@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        h1 {
+            text-align: center;
+        }
+        .row {
+            text-align: center;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>Greatest Restaurant Ever!</title>
+</head>
+<body>
+  <div class="container">
+    <header class="jumbotron" style="background-color: rgb(37, 37, 33);">
+      <h1 style="color: red;">** Four Guys Restaurant **</h1>
+      <hr></hr>
+      <div class="row">
+        <div class="col-12"><a href="/reservation"><button class="btn btn-success" id="reserveBtn">Make Reservation</button></a> <a href="/"><button class="btn btn-dark"id="tablesBtn" ><img src="https://a.slack-edge.com/production-standard-emoji-assets/13.0/apple-large/1f3e0@2x.png" width="20" height="20" alt=""></button></a></div>
+      </div>
+    </header>
+    
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header" style="background-color: rgb(240, 111, 36);">
+            <h5><strong>Current Reservation</strong></h5>
+          </div>
+          <div class="card-body">
+            <ol>
+              <li class="card-header">
+                <p>John Smith</p>
+              </li>
+              <br>
+              <li class="card-header">
+                <p>Mark Jones</p>
+              </li>
+              <br>
+              <li class="card-header">
+                <p>Lucy Miller</p>
+              </li>
+               </ol>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <br>
+        <div class="card">
+          <div class="card-header" style="background-color: rgb(204, 92, 204);">
+            <h5><strong>Wait List</strong></h5>
+          </div>
+          <div class="card-body">
+            <ol>
+              <li class="card-header">
+                <p>Tim Allen</p>
+              </li>
+              <br>
+              <li class="card-header">
+                <p>Ethan Hunt</p>
+              </li>
+              <br>
+              <li class="card-header">
+                <p>James Bond</p>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script type="text/javascript">
+        $("#search-btn").on("click", function() {
+          var searchedCharacter = $("#character-search").val().trim();
+    
+          // Using a RegEx Pattern to remove spaces from searchedCharacter
+          // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+          searchedCharacter = searchedCharacter.replace(/\s+/g, "").toLowerCase();
+    
+          $.get("/api/characters/" + searchedCharacter, function(data) {
+            console.log(data);
+            if (data) {
+              $("#stats").show();
+              $("#name").text(data.name);
+              $("#role").text(data.role);
+              $("#age").text(data.age);
+              $("#force-points").text(data.forcePoints);
+            } else {
+              $("#name").text(
+                "The force is not strong with this one. Your character was not found.");
+              $("#stats").hide();
+            }
+          });
+        });
+    </script>
+      
+      <h6><a href="api/tables">API Tables</a> | <a href="api/waitlist">API Wait List</a></h6>
+    <script text="text/javascript"></script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        h1 {
+            text-align: center;
+        }
+        .row {
+            text-align: center;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>Greatest Restaurant Ever!</title>
+</head>
+<body>
+  <div class="container">
+    <header class="jumbotron" style="background-color: rgb(37, 37, 33);">
+      <h1 style="color: red;">** Four Guys Restaurant **</h1>
+      <hr></hr>
+      <div class="row">
+        <div class="col-12"><a href="/tables"><button class="btn btn-primary" id="reserveBtn">View Tables</button></a> <a href="/"><button class="btn btn-dark"id="tablesBtn" ><img src="https://a.slack-edge.com/production-standard-emoji-assets/13.0/apple-large/1f3e0@2x.png" width="20" height="20" alt=""></button></a></div>
+      </div>
+    </header>
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header" style="background-color: rgb(19, 115, 139);">
+            <h3><strong>Add Your Information</strong></h3>
+          </div>
+          <div class="card-body">
+            <form method="POST" role="form">
+
+              <div class="form-group" style="background-color: rgb(122, 184, 8);">
+                <label for="name">Enter Your Name</label>
+                <input type="text" class="form-control" id="name">
+              </div>
+
+              <div class="form-group" style="background-color: rgb(122, 184, 8);">
+                <label for="email">Enter Your Email</label>
+                <input type="text" class="form-control" id="email">
+              </div>
+
+              <div class="form-group" style="background-color: rgb(122, 184, 8);">
+                <label for="phone">Enter Your Cell-Phone Number</label>
+                <input type="text" class="form-control" id="phone">
+              </div>
+
+              <div class="form-group" style="background-color: rgb(122, 184, 8);">
+                <label for="specialID">Enter A Special ID</label>
+                <input type="text" class="form-control" id="specialID">
+              </div>
+
+            </form>
+            <br>
+            <div class="text-right">
+              <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span class="fa fa-fire"></span>Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    // Question: What does this code do?
+    $("#submit").on("click", function(event) {
+      event.preventDefault();
+      var newCharacter = {
+        name: $("#name").val().trim(),
+        email: $("#email").val().trim(),
+        phone: $("#phone").val().trim(),
+        specialID: $("#specialID").val().trim(),
+      };
+
+      // Question: What does this code do??
+      $.post("/api/characters", newCharacter)
+        .then(function(data) {
+          console.log("reservation.html", data);
+          alert("Adding name...");
+        });
+    });
+  </script>
+
+    
+      
+      <h6><a href="api/tables">API Tables</a> | <a href="api/waitlist">API Wait List</a></h6>
+    <script text="text/javascript"></script>
+</body>
+</html>
